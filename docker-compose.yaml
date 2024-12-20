@@ -1,0 +1,6 @@
+services:
+  nginx:
+    build: .
+    image: todomvc/react:latest
+    ports:
+      - "8080:80"
