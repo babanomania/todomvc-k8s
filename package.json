@@ -11,7 +11,11 @@
         "build": "webpack --config webpack.prod.js",
         "dev": "webpack serve --open --config webpack.dev.js",
         "serve": "http-server ./dist -p 3000 -c-1 --cors",
-        "test": "jest"
+        "test": "jest",
+        "docker:build": "docker build -t todomvc/react:latest .",
+        "k8s:deploy": "kubectl apply -k . -n todomvc",
+        "k8s:delete": "kubectl delete -k . -n todomvc",
+        "deploy": "npm run build && npm run docker:build && npm run k8s:deploy"
     },
     "devDependencies": {
         "@babel/core": "^7.21.0",

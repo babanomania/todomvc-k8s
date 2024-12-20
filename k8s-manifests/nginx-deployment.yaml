@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todomvc-react
+  labels:
+    app: todomvc-react
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todomvc-react
+  template:
+    metadata:
+      labels:
+        app: todomvc-react
+    spec:
+      containers:
+        - name: todomvc-react
+          image: todomvc/react:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              name: web
