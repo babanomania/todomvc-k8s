@@ -5,7 +5,9 @@
   "scripts": {
     "k8s:deploy": "kubectl apply -k . -n todomvc",
     "k8s:delete": "kubectl delete -k . -n todomvc",
-    "deploy": "npm run build --workspaces && npm run image:build && npm run k8s:deploy"
+    "deploy": "npm run build --workspaces && npm run image:build && npm run k8s:deploy",
+    "postgres:start": "docker run --name todomvc-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres",
+    "postgres:stop": "docker stop todomvc-postgres && docker rm todomvc-postgres"
   },
   "author": "babanomania@gmail.com",
   "license": "MIT",

@@ -1,0 +1,1 @@
+## https://medium.com/@rizky.purnawan/building-a-typescript-based-rest-api-with-prisma-and-fastify-a-boilerplate-guide-d1348f95d51a  
