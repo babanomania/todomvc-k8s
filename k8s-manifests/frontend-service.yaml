@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: todomvc-react
+  name: todomvc-frontend
   labels:
-    app: todomvc-react
+    type: frontend
 spec:
   ports:
     - port: 8080
       targetPort: 80
-      name: todomvc-react
+      name: todomvc-frontend
   selector:
-    app: todomvc-react
+    type: frontend
   type: NodePort

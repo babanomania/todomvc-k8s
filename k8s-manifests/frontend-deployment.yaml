@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todomvc-react
+  name: todomvc-frontend
   labels:
-    app: todomvc-react
+    type: frontend
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: todomvc-react
+    type: frontend
   template:
     metadata:
       labels:
-        app: todomvc-react
+    type: frontend
     spec:
       containers:
-        - name: todomvc-react
-          image: todomvc/react:latest
+        - name: todomvc-frontend
+          image: todomvc/frontend:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 80

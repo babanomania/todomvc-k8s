@@ -1,5 +1,5 @@
 namespace: todomvc
 resources:
-  - k8s-manifests/nginx-namespace.yaml
-  - k8s-manifests/nginx-deployment.yaml
-  - k8s-manifests/nginx-service.yaml
+  - k8s-manifests/namespace.yaml
+  - k8s-manifests/frontend-deployment.yaml
+  - k8s-manifests/frontend-service.yaml
