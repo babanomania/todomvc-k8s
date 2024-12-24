@@ -30,4 +30,4 @@ RUN npm install --only=production
 
 EXPOSE 3001
 
-ENTRYPOINT ["npm", "run", "start:prod"]
+ENTRYPOINT ["npm", "run", "start"]

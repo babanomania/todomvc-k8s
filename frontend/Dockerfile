@@ -6,6 +6,8 @@ COPY package-lock.json /app/package-lock.json
 
 COPY . /app
 
+ENV REACT_APP_API_URL=/api
+
 RUN npm ci
 RUN npm run build
 
