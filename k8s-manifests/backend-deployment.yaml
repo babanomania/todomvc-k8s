@@ -14,6 +14,14 @@ spec:
       labels:
         type: backend
     spec:
+      initContainers:
+        - name: todomvc-migration
+          image: todomvc/backend:latest
+          imagePullPolicy: Never
+          command: [ 'npm', 'run', 'migrate:prod' ]
+          envFrom:
+            - configMapRef:
+                name: backend-secret
       containers:
         - name: todomvc-backend
           image: todomvc/backend:latest
