@@ -1,5 +1,10 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { DefinePlugin } = require("webpack");
+
+const dotenv = require('dotenv')
 const path = require("path");
+
+dotenv.config();
 
 module.exports = {
     entry: {
@@ -10,6 +15,9 @@ module.exports = {
             title: "TodoMVC: React",
             template: path.resolve(__dirname, "public", "index.html"),
         }),
+        new DefinePlugin({
+            'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL),
+        })
     ],
     output: {
         filename: "[name].bundle.js",

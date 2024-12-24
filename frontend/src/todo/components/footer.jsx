@@ -9,7 +9,21 @@ export function Footer({ todos, dispatch }) {
 
     const activeTodos = useMemo(() => todos.filter((todo) => !todo.completed), [todos]);
 
-    const removeCompleted = useCallback(() => dispatch({ type: REMOVE_COMPLETED_ITEMS }), [dispatch]);
+    const removeCompleted = useCallback(() => {
+
+        fetch(`${process.env.REACT_APP_API_URL}/todo/completed`, { method: 'DELETE' })
+            .then(response => {
+                if (response.ok) {
+                    dispatch({ type: REMOVE_COMPLETED_ITEMS })
+                } else {
+                    throw new Error('Failed to delete completed items');
+                }
+            })
+            .catch(error => {
+                throw new Error('Failed to delete completed items');
+            });
+
+    }, [dispatch]);
 
     // prettier-ignore
     if (todos.length === 0)

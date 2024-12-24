@@ -12,7 +12,7 @@
         "dev": "webpack serve --open --config webpack.dev.js",
         "serve": "http-server ./dist -p 3000 -c-1 --cors",
         "test": "jest",
-        "images:delete": "docker rmi -f $(docker images -q todomvc/frontend)",
+        "images:delete": "docker rmi -f $(docker images -q todomvc/frontend | uniq)",
         "image:build": "docker build -t todomvc/frontend:$(jq -r .version package.json) -t todomvc/frontend:latest ."
     },
     "devDependencies": {
@@ -35,6 +35,7 @@
     },
     "dependencies": {
         "classnames": "^2.2.5",
+        "dotenv": "^16.4.7",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-router-dom": "^6.8.2",

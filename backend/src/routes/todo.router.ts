@@ -36,6 +36,26 @@ async function todoRouter(fastify: FastifyInstance) {
     controllers.toggleTodo,
   );
 
+  fastify.patch(
+    '/toggle',
+    {
+      config: {
+        description: 'Toggle all todo',
+      }
+    },
+    controllers.toggleAllTodo,
+  );
+
+  fastify.patch(
+    '/:id/content',
+    {
+      config: {
+        description: 'Update a specific todo',
+      }
+    },
+    controllers.updateTodo,
+  );
+
   fastify.delete(
     '/:id',
     {
@@ -46,6 +66,25 @@ async function todoRouter(fastify: FastifyInstance) {
     controllers.deleteTodo,
   );
 
+  fastify.delete(
+    '/',
+    {
+      config: {
+        description: 'Delete all todos',
+      }
+    },
+    controllers.removeAllTodo,
+  );
+
+  fastify.delete(
+    '/completed',
+    {
+      config: {
+        description: 'Delete all completed todos',
+      }
+    },
+    controllers.removeCompletedTodo,
+  );
 
   fastify.get(
     '/',

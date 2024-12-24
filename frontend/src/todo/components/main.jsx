@@ -23,7 +23,27 @@ export function Main({ todos, dispatch }) {
         [todos, route]
     );
 
-    const toggleAll = useCallback((e) => dispatch({ type: TOGGLE_ALL, payload: { completed: e.target.checked } }), [dispatch]);
+    const toggleAll = useCallback((e) => {
+
+        fetch(`${process.env.REACT_APP_API_URL}/todo/toggle`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ completed: e.target.checked })
+        })
+            .then(response => {
+                if (response.ok) {
+                    dispatch({ type: TOGGLE_ALL, payload: { completed: !e.target.checked } });
+                } else {
+                    throw new Error('Failed to toggle all items');
+                }
+            })
+            .catch(error => {
+                throw new Error('Failed to toggle all items');
+            });
+
+    }, [dispatch]);
 
     return (
         <main className="main" data-testid="main">
