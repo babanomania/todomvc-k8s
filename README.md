@@ -33,16 +33,57 @@ This project is a branch of the TodoMVC project, aimed at showcasing the capabil
     npm run build --workspaces
     npm run image:build --workspaces
     ```
+3. **Deployment Options:**
 
-3. **Deploy to Kubernetes:**
-    ```sh
-    kubectl apply -k . -n todomvc
-    ```
+    You can deploy the application using either Kubernetes directly or Helm. Follow the steps below for your preferred method.
 
-4. **Deploy using Helm:**
-    ```sh
-    helm install todomvc ./chart
-    ```
+    #### Deploy to Kubernetes
+
+    1. **Deploy using kubectl:**
+        ```sh
+        kubectl apply -k . -n todomvc
+        ```
+
+        or 
+
+        ```sh
+        npm run k8s:deploy
+        ```
+
+    2. **Undeploy using kubectl:**
+        ```sh
+        kubectl delete -k . -n todomvc
+        ```
+
+        or 
+
+        ```sh
+        npm run k8s:delete
+        ```
+
+    #### Deploy using Helm
+
+    1. **Deploy using Helm:**
+        ```sh
+        helm install todomvc ./chart
+        ```
+
+        or 
+
+        ```sh
+        npm run helm:install
+        ```
+
+    2. **Undeploy using Helm:**
+        ```sh
+        helm delete todomvc
+        ```
+
+        or 
+
+        ```sh
+        npm run helm:uninstall
+        ```
 
 ### Running Locally Without Kubernetes
 
