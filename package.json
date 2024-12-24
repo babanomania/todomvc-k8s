@@ -5,6 +5,8 @@
   "scripts": {
     "k8s:deploy": "kubectl apply -k . -n todomvc",
     "k8s:delete": "kubectl delete -k . -n todomvc",
+    "helm:install": "helm install todomvc charts/",
+    "helm:uninstall": "helm delete todomvc",
     "clean": "npm run k8s:delete && npm run images:delete --workspaces && rm -rf frontend/dist backend/dist",
     "deploy": "npm run build --workspaces && npm run image:build --workspaces && npm run k8s:deploy"
   },

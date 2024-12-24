@@ -1,0 +1,31 @@
+namespace: todomvc
+
+frontend:
+  replicas: 1
+  image:
+    repository: todomvc/frontend
+    tag: latest
+  service:
+    containerPort: 80
+    nodePort: 30080
+
+backend:
+  replicas: 2
+  image:
+    repository: todomvc/backend
+    tag: latest
+  service:
+    containerPort: 3001
+
+database:
+  replicas: 2
+  image:
+    repository: postgres
+    tag: 14
+  storage:
+    size: 1Gi
+  name: postgres
+  user: ps_user
+  password: SecurePassword
+  service:
+    containerPort: 5432

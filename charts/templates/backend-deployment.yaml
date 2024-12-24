@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todomvc-backend
+  labels:
+    type: backend
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      type: backend
+  template:
+    metadata:
+      labels:
+        type: backend
+    spec:
+      initContainers:
+        - name: todomvc-migration
+          image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}
+          imagePullPolicy: Never
+          command: [ 'npm', 'run', 'migrate:prod' ]
+          envFrom:
+            - configMapRef:
+                name: backend-secret
+      containers:
+        - name: todomvc-backend
+          image: todomvc/backend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: backend-secret          
