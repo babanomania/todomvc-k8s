@@ -5,14 +5,14 @@ metadata:
   labels:
     type: frontend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-    type: frontend
+      type: frontend
   template:
     metadata:
       labels:
-    type: frontend
+        type: frontend
     spec:
       containers:
         - name: todomvc-frontend
@@ -20,4 +20,3 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 80
-              name: web

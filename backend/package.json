@@ -8,11 +8,14 @@
     "start": "node dist/main.js",
     "dev": "ts-node-dev ./src/main.ts | pino-pretty --colorize",
     "postinstall": "prisma generate",
+    "postgres:start": "docker run --name todomvc-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres",
+    "postgres:stop": "docker stop todomvc-postgres && docker rm todomvc-postgres",
     "db:gen": "prisma generate",
     "db:studio": "prisma studio",
     "migrate": "prisma migrate dev",
     "migrate:prod": "prisma migrate deploy",
     "start:prod": "npm run migrate:prod && npm run start",
+    "images:delete": "docker rmi -f $(docker images -q todomvc/backend)",
     "image:build": "docker build -t todomvc/backend:$(jq -r .version package.json) -t todomvc/backend:latest ."
   },
   "dependencies": {

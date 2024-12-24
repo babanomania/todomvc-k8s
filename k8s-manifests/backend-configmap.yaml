@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-secret
+  labels:
+    type: backend
+data:
+  DATABASE_URL: postgresql://ps_user:SecurePassword@postgres:5432/postgres

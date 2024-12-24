@@ -12,6 +12,7 @@
         "dev": "webpack serve --open --config webpack.dev.js",
         "serve": "http-server ./dist -p 3000 -c-1 --cors",
         "test": "jest",
+        "images:delete": "docker rmi -f $(docker images -q todomvc/frontend)",
         "image:build": "docker build -t todomvc/frontend:$(jq -r .version package.json) -t todomvc/frontend:latest ."
     },
     "devDependencies": {

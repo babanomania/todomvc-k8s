@@ -23,7 +23,11 @@ COPY --from=build /app /app
 
 ENV NODE_ENV=production
 ENV LOG_LEVEL=info
+ENV LISTEN_HOST=0.0.0.0
+ENV LISTEN_PORT=3001
 
 RUN npm install --only=production
+
+EXPOSE 3001
 
 ENTRYPOINT ["npm", "run", "start:prod"]

@@ -1,5 +1,13 @@
 namespace: todomvc
 resources:
   - k8s-manifests/namespace.yaml
+  - k8s-manifests/postgres-configmap.yaml
+  - k8s-manifests/postgres-pv.yaml
+  - k8s-manifests/postgres-claim.yaml
+  - k8s-manifests/postgres-deployment.yaml
+  - k8s-manifests/postgres-service.yaml
   - k8s-manifests/frontend-deployment.yaml
   - k8s-manifests/frontend-service.yaml
+  - k8s-manifests/backend-configmap.yaml
+  - k8s-manifests/backend-deployment.yaml
+  - k8s-manifests/backend-service.yaml

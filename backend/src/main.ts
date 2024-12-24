@@ -9,8 +9,8 @@ import helmet from '@fastify/helmet';
 
 loadConfig();
 
-const port = Number(process.env.API_PORT) || 5001;
-const host = String(process.env.API_HOST);
+const port = Number(process.env.LISTEN_PORT) || 5001;
+const host = String(process.env.LISTEN_HOST);
 
 const buildFastify = () => {
   const server = fastify({
