@@ -21,9 +21,9 @@ spec:
             - /bin/sh
             - -c
             - |
-              until nslookup todomvc-backend; do
+              until nc -z -v -w30 todomvc-backend 3001; do
                 echo waiting for backend service...
-                sleep 2
+                sleep 3s
               done
       containers:
         - name: todomvc-frontend

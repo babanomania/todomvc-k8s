@@ -21,13 +21,13 @@ spec:
             - /bin/sh
             - -c
             - |
-              until nslookup todomvc-backend; do
+              until nc -z -v -w30 todomvc-backend {{ .Values.backend.service.containerPort }}; do
                 echo waiting for backend service...
-                sleep 2
+                sleep 3s
               done
       containers:
         - name: todomvc-frontend
           image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
           imagePullPolicy: Never
           ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.frontend.service.containerPort }}

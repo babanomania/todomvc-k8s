@@ -41,7 +41,7 @@ spec:
             - |
               while ! psql -c 'select 1' > /dev/null 2>&1; do
                 echo "waiting for database"
-                sleep 1
+                sleep 3s
               done
               echo "database is ready!"
         - name: todomvc-migration
@@ -56,7 +56,7 @@ spec:
           image: todomvc/backend:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 3001
+            - containerPort: {{ .Values.backend.service.containerPort }}
           envFrom:
             - configMapRef:
                 name: backend-secret          
