@@ -15,6 +15,35 @@ spec:
         type: backend
     spec:
       initContainers:
+        - name: wait-for-postgres
+          image: {{ .Values.database.image.repository }}:{{ .Values.database.image.tag }}
+          env:
+          - name: PGHOST
+            value: postgres
+          - name: PGUSER
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_USER
+                name: postgres-secret
+          - name: PGPASSWORD
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_PASSWORD
+                name: postgres-secret
+          - name: PGDATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_DB
+                name: postgres-secret
+          command:
+            - /bin/sh
+            - -c
+            - |
+              while ! psql -c 'select 1' > /dev/null 2>&1; do
+                echo "waiting for database"
+                sleep 1
+              done
+              echo "database is ready!"
         - name: todomvc-migration
           image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}
           imagePullPolicy: Never

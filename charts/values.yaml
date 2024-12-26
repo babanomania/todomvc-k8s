@@ -18,7 +18,7 @@ backend:
     containerPort: 3001
 
 database:
-  replicas: 2
+  replicas: 1
   image:
     repository: postgres
     tag: 14
